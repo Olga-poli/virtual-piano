@@ -1,0 +1,83 @@
+body {
+    background: #252525 linear-gradient(140deg, #1c0606, #090202) fixed;
+    font-family: 'Merriweather', serif;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+kbd {
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+    font-size: 24px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.black-keys {
+    z-index: 2;
+    display: flex;
+    flex-flow: row;
+    position: relative;
+}
+
+.top-left-group {
+    margin-right: 6em;
+}
+
+.black-keys kbd {
+    position: relative;
+    height: 300px;
+    width: 60px;
+    margin: 0 10px 0 10px;
+    color: #eaeaea;
+    bottom: -150px;
+    line-height: 20em;
+    border: 1px solid #000;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.2) inset, 0 -5px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 2px 4px rgba(0, 0, 0, 0.5);
+    background: #1a1a1a linear-gradient(45deg, #222 0%, #555 100%);
+}
+
+.white-keys {
+    z-index: 1;
+}
+
+.white-keys kbd {
+    position: relative;
+    height: 500px;
+    color: #262626;
+    top: -150px;
+    line-height: 35em;
+    border-left: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 5px #ccc inset, 0 0 3px rgba(0, 0, 0, 0.2);
+    background: #d9d9d9 linear-gradient(to bottom, #eee 0%, #fff 100%);
+}
+
+kbd.key-down {
+    box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.2) inset, 0 -2px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 1px 2px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(to right, #444 0%, #222 100%);
+}
+
+.black-keys kbd.key-down {
+    box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.2) inset, 0 -2px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 1px 2px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(to right, #444 0%, #222 100%);
+}
+
+.white-keys kbd.key-down {
+    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1) inset, -5px 5px 20px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, #fff 0%, #e9e9e9 100%);
+}
