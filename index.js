@@ -13,30 +13,44 @@ let buttons = {
     'KeyU': document.getElementById('kbd-U'),
 }
 
-document.addEventListener('keydown', (event) => {
-        let name = event.key.toUpperCase();
-        let code = event.code;
-        if (Object.keys(buttons).includes(code)) {
+document.addEventListener('keydown', keyDownListener);
+document.addEventListener('keyup', keyUpListener);
 
-            buttons[code].setAttribute('class', 'key-down');
-            // console.log(buttons[code]);
-            return createAudioObj(event.code);
-        } else {
-            console.log(`Unbound ${name} key is pressed.\r\n Key code value: ${code}`)
-        }
-    }
-);
+for (let [key, value] of Object.entries(buttons)) {
+    value.addEventListener('mousedown', keyMouseDownListener(key));
+    value.addEventListener('mouseup', keyMouseUpListener(key));
+}
 
-document.addEventListener('keyup', (event) => {
-        let name = event.key.toUpperCase();
-        let code = event.code;
-        if (Object.keys(buttons).includes(code)) {
-            buttons[code].removeAttribute('class', 'key-down');
-        } else {
-            console.log(`Unbound ${name} key is pressed.\r\n Key code value: ${code}`)
-        }
+function keyMouseDownListener(key) {
+    return function() {
+        this.setAttribute('class', 'key-down');
+        createAudioObj(key)
     }
-);
+}
+
+function keyMouseUpListener(key) {
+    return function() {
+        this.removeAttribute('class', 'key-down');
+    }
+}
+
+function keyDownListener(event) {
+    let name = event.key.toUpperCase();
+    let code = event.code;
+    if (Object.keys(buttons).includes(code)) {
+        buttons[code].setAttribute('class', 'key-down');
+        createAudioObj(event.code);
+    } else {
+        console.log(`Unbound ${name} key is pressed.\r\n Key code value: ${code}`)
+    }
+}
+
+function keyUpListener(event) {
+    let code = event.code;
+    if (Object.keys(buttons).includes(code)) {
+        buttons[code].removeAttribute('class', 'key-down');
+    }
+}
 
 function createAudioObj(eventCodeName) {
     let audio = new Audio(pathToAudio(eventCodeName));
